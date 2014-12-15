@@ -4,7 +4,7 @@ export EDITOR="/usr/local/bin/mate -w"
 # forcing you to use anaconda or explicitly virtualenv first
 function virtualenv_message {
 	echo "Adam sayz:"
-	echo "Use initanaconda or initvirtualenvwrapper first."
+	echo "Use condainit or virtualenvinit first."
 }
 
 alias virtualenv=virtualenv_message
@@ -18,7 +18,10 @@ function condainit {
 	# useful aliases from travis oliphant 
 	alias workon='source activate'
 	alias workoff='source deactivate'
-	alias virtualenv='conda create -p'
+	alias virtualenv='conda create -n'
+	
+	# additional useful aliases
+	alias lscondaenv='conda info -e'
 }
 
 # wrapped virtualenvwrapper in a function to keep it separate
