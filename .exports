@@ -1,0 +1,3 @@
+# use textmate as default editor 
+export EDITOR="/usr/local/bin/mate -w"
+
