@@ -1,2 +1,8 @@
 brew install python
 brew install git
+
+# http://birdchan.com/home/2013/12/30/need-pk-compat-v4-5-can-do-v2-1/
+brew install p7zip
+
+# document tree visualization 
+brew install tree
