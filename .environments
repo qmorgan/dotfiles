@@ -13,6 +13,12 @@ function condainit {
 	# added by Anaconda 2.1.0 installer
 	export PATH="/Users/qmorgan/anaconda/bin:$PATH"
 	
+	# list available environments
+	conda info -e
+	
+	# allow pip to run in conda
+	export PIP_REQUIRE_VIRTUALENV="" 
+	
 	# useful aliases from travis oliphant 
 	alias workon='source activate'
 	alias workoff='source deactivate'
@@ -20,16 +26,21 @@ function condainit {
 	
 	# additional useful aliases
 	alias lscondaenv='conda info -e'
+	alias condafreeze='conda list --export'
 }
 
 # wrapped virtualenvwrapper in a function to keep it separate
 function virtualenvinit {
+	
 	unalias virtualenv
 	# setup virtualenvwrapper paths
 	export WORKON_HOME=$HOME/.virtualenvs
 	export PROJECT_HOME=$HOME/projects
 	export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 	source /usr/local/bin/virtualenvwrapper_lazy.sh
+	
+	echo "Available virtual environments:"
+	lsvirtualenv
 }
 
 # pip should only run if there is a virtualenv currently activated
