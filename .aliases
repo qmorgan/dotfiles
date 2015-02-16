@@ -9,3 +9,5 @@ alias gb='git branch'
 alias gm='git merge'
 alias gd="git diff"
 
+alias skypelocal="/Applications/Skype.app/Contents/MacOS/Skype"
+alias skyperoot="sudo /Applications/Skype.app/Contents/MacOS/Skype"
