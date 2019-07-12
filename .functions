@@ -2,3 +2,8 @@
 function mkd() {
     mkdir -p "$@" && cd "$@"
 }
+
+# SSH in and start bash shell
+function bssh() {
+    ssh $* -t "bash -l"
+}

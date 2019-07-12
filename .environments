@@ -7,38 +7,75 @@ function virtualenv_message {
 
 alias virtualenv=virtualenv_message
 
-# wrapped anaconda in a function to keep it separate
+# # wrapped anaconda in a function to keep it separate
+# function condainit {
+# 	unalias virtualenv
+# 	# added by Anaconda 2.1.0 installer
+# 	export PATH="/Users/z0024l4/anaconda/bin:$PATH"
+#
+# 	# list available environments
+# 	conda info -e
+#
+# 	# allow pip to run in conda
+# 	export PIP_REQUIRE_VIRTUALENV=""
+#
+# 	# useful aliases from travis oliphant
+# 	alias workon='source activate'
+# 	alias workoff='source deactivate'
+# 	alias virtualenv='conda create -n'
+#
+# 	# additional useful aliases
+# 	alias lscondaenv='conda info -e'
+# 	alias condafreeze='conda list --export'
+# }
+
+
 function condainit {
 	unalias virtualenv
-	# added by Anaconda 2.1.0 installer
-	export PATH="/Users/qmorgan/anaconda/bin:$PATH"
-	
-	# list available environments
-	conda info -e
-	
-	# allow pip to run in conda
-	export PIP_REQUIRE_VIRTUALENV="" 
-	
-	# useful aliases from travis oliphant 
-	alias workon='source activate'
-	alias workoff='source deactivate'
-	alias virtualenv='conda create -n'
-	
-	# additional useful aliases
-	alias lscondaenv='conda info -e'
-	alias condafreeze='conda list --export'
+
+  # Based on new conda installler.. 2019-07-02
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/Users/z0024l4/qconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/Users/z0024l4/qconda/etc/profile.d/conda.sh" ]; then
+          . "/Users/z0024l4/qconda/etc/profile.d/conda.sh"
+      else
+          export PATH="/Users/z0024l4/qconda/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+
+  # list available environments
+  conda info -e
+      
+  # allow pip to run in conda
+  export PIP_REQUIRE_VIRTUALENV=""
+      
+  # useful aliases from travis oliphant
+  alias workon='source activate'
+  alias workoff='source deactivate'
+  alias virtualenv='conda create -n'
+      
+  # additional useful aliases
+  alias lscondaenv='conda info -e'
+  alias condafreeze='conda list --export'
 }
+
 
 # wrapped virtualenvwrapper in a function to keep it separate
 function virtualenvinit {
-	
+
 	unalias virtualenv
 	# setup virtualenvwrapper paths
 	export WORKON_HOME=$HOME/.virtualenvs
 	export PROJECT_HOME=$HOME/projects
 	export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 	source /usr/local/bin/virtualenvwrapper_lazy.sh
-	
+
 	echo "Available virtual environments:"
 	lsvirtualenv
 }
@@ -60,3 +97,10 @@ easy_install_message(){
 	echo "Try brew instead, or conda if using anaconda distribution."
 }
 alias easy_install=easy_install_message
+
+
+function magickinit {
+	export MAGICK_HOME="$HOME/ImageMagick-7.0.7"
+    export PATH="$MAGICK_HOME/bin:$PATH"
+    export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
+}
